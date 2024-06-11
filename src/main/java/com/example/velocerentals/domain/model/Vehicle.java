@@ -1,6 +1,8 @@
 package com.example.velocerentals.domain.model;
 
 
+import com.example.velocerentals.domain.enums.VehicleCategory;
+import com.example.velocerentals.domain.enums.VehicleDisponibility;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,9 +22,13 @@ public class Vehicle {
     private Long id;
     private String name;
     private double price;
-    private String category;
-    private String disponibility;
-    private String plate;
 
+    @Enumerated
+    private VehicleCategory category;
+
+    @Enumerated
+    private VehicleDisponibility disponibility;
+
+    private String plate;
 
 }
