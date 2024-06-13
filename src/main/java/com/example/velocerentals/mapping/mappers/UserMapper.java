@@ -1,12 +1,12 @@
 package com.example.velocerentals.mapping.mappers;
 
 
-import com.example.velocerentals.domain.model.User;
+import com.example.velocerentals.domain.entities.User;
 import com.example.velocerentals.mapping.dtos.UserDTO;
 
 
 public class UserMapper {
-    public static User mapFrom(UserDTO userProfileDTO) {
+    public static User mapFromModel(UserDTO userProfileDTO) {
         return User.builder()
                 .id(userProfileDTO.id())
                 .name(userProfileDTO.name())
@@ -17,13 +17,13 @@ public class UserMapper {
 
     }
 
-    public static UserDTO mapFrom(User userProfile) {
+    public static UserDTO mapFromDto(User user) {
         return UserDTO.builder()
-                .id(userProfile.getId())
-                .name(userProfile.getName())
-                .age(userProfile.getAge())
-                .email(userProfile.getEmail())
-                .cellphone(userProfile.getCellphone())
+                .id(user.getId())
+                .name(user.getName())
+                .age(user.getAge())
+                .email(user.getEmail())
+                .cellphone(user.getCellphone())
                 .build();
     }
 }

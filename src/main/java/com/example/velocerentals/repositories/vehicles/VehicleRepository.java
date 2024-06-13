@@ -1,20 +1,11 @@
 package com.example.velocerentals.repositories.vehicles;
 
-import com.example.velocerentals.domain.model.Vehicle;
+import com.example.velocerentals.domain.entities.Vehicle;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-import java.util.List;
 
-public interface VehicleRepository {
-
-    List<Vehicle> listVehicles();
-
-    Vehicle byIdVehicle(Long id);
-
-    void removeVehicle(Long id);
-
-    void addVehicle(Vehicle vehicle);
-
+public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
 
 }

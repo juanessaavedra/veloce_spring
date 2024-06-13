@@ -1,8 +1,8 @@
-package com.example.velocerentals.domain.model;
+package com.example.velocerentals.domain.entities;
 
 
+import com.example.velocerentals.domain.enums.VehicleAvailable;
 import com.example.velocerentals.domain.enums.VehicleCategory;
-import com.example.velocerentals.domain.enums.VehicleDisponibility;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,11 +23,11 @@ public class Vehicle {
     private String name;
     private double price;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private VehicleCategory category;
 
-    @Enumerated
-    private VehicleDisponibility disponibility;
+    @Enumerated(EnumType.STRING)
+    private VehicleAvailable available;
 
     private String plate;
 

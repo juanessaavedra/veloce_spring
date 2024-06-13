@@ -1,7 +1,8 @@
 package com.example.velocerentals.services.vehicles;
 
-import com.example.velocerentals.domain.model.User;
+
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
+import org.apache.coyote.BadRequestException;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ public interface VehicleService {
 
     List<VehicleDTO> listVehicles();
 
-    VehicleDTO byIdVehicle(Long id);
+    VehicleDTO byIdVehicle(Long id) throws BadRequestException;
 
     void removeVehicle(Long id);
 
-    void addVehicle(VehicleDTO vehicleDTO);
+    VehicleDTO addVehicle(VehicleDTO vehicleDTO);
 }

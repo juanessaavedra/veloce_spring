@@ -1,4 +1,4 @@
-package com.example.velocerentals.domain.model;
+package com.example.velocerentals.domain.entities;
 
 
 import jakarta.persistence.*;
@@ -18,11 +18,11 @@ public class Reservation {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "id_vehicle")
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     private LocalDate startDate;

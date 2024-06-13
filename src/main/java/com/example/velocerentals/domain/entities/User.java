@@ -1,4 +1,4 @@
-package com.example.velocerentals.domain.model;
+package com.example.velocerentals.domain.entities;
 
 
 import jakarta.persistence.*;

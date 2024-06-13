@@ -1,42 +1,66 @@
 package com.example.velocerentals.services.users;
 
-import com.example.velocerentals.domain.model.User;
 import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.mappers.UserMapper;
-import com.example.velocerentals.repositories.users.UserRepository;
 
-import com.example.velocerentals.repositories.users.UserRepositoryImpl;
+import com.example.velocerentals.repositories.users.UserRepository;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
-    @Override
-    public List<UserDTO> listUsers() {
-        return userRepository.listUsers().stream().map(UserMapper::mapFrom).toList();
-    }
 
-    @Override
-    public UserDTO byIdUser(Long id) {
-        User user = userRepository.byIdUser(id);
-        return UserMapper.mapFrom(user);
-    }
+/**
+ * Obtiene una lista de todos los usuarios.
+ */
+@Override
+public List<UserDTO> listUsers() {
+    return userRepository.findAll().stream().map(UserMapper::mapFromDto).toList();
+}
 
-    @Override
-    public void removeUser(Long id) {
-        userRepository.removeUser(id);
-    }
+/**
+ * Busca un usuario por su identificador.
+ */
+@Override
+public UserDTO byIdUser(Long id) throws BadRequestException {
+    return UserMapper.mapFromDto(userRepository.findById(id).orElseThrow(() -> new BadRequestException("Usuario no encontrado")));
+}
 
-    @Override
-    public void addUser(UserDTO userDTO) {
-        userRepository.addUser(UserMapper.mapFrom(userDTO));
+/**
+ * Elimina un usuario por su identificador.
+ */
+@Override
+public void removeUser(Long id) {
+    userRepository.deleteById(id);
+}
+
+/**
+ * Añade un nuevo usuario.
+ */
+@Override
+public UserDTO addUser(UserDTO userDTO) {
+    return UserMapper.mapFromDto(userRepository.save(UserMapper.mapFromModel(userDTO)));
+}
+
+/**
+ * Busca un usuario por su correo electrónico.
+ */
+@Override
+public Optional<UserDTO> byEmailUser(String email)  {
+    Optional<UserDTO> userDTO = userRepository.findByEmail(email).map(UserMapper::mapFromDto);
+    if(userDTO.isEmpty()){
+        return Optional.empty();
     }
+    return userDTO;
+}
+
 }

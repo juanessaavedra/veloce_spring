@@ -1,4 +1,4 @@
-package com.example.velocerentals.domain.model;
+package com.example.velocerentals.domain.entities;
 
 
 import com.example.velocerentals.domain.enums.PayMethods;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transcations")
+@Table(name = "transactions")
 @Entity
 public class Transaction {
 
@@ -26,10 +26,11 @@ public class Transaction {
     @JoinColumn(name = "id_reservation")
     private Reservation reservation;
 
-    private double amount;
+    private double totalAmount;
+
     private LocalDateTime dateTime;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private PayMethods payMethods;
 
     private int status;
