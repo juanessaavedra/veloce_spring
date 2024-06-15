@@ -45,7 +45,7 @@ public void removeReservation(Long id) {
 }
 
 /**
- * Añade una nueva reserva a la base de datos y la convierte a un DTO.
+ * Añade o actualiza una reserva
  */
 @Override
 public ReservationDTO saveReservation(ReservationDTO reservationDTO) {
@@ -78,23 +78,31 @@ public Optional<ReservationDTO> findByVehicleId(Long idVehicle) {
     return reservationDTO;
 }
 
-    @Override
-    public Optional<ReservationDTO> findByStartDate(LocalDate startDate) {
-        Optional<ReservationDTO> reservationDTO = reservationRepository.findByStartDate(startDate).map(ReservationMapper::mapFromDto);
-        if(reservationDTO.isEmpty()){
-            return Optional.empty();
-        }
-        return reservationDTO;
+    /**
+ * Busca una reserva por la fecha de inicio y la convierte a un DTO.
+ * Si no se encuentra la reserva, devuelve un Optional vacío.
+ */
+@Override
+public Optional<ReservationDTO> findByStartDate(LocalDate startDate) {
+    Optional<ReservationDTO> reservationDTO = reservationRepository.findByStartDate(startDate).map(ReservationMapper::mapFromDto);
+    if(reservationDTO.isEmpty()){
+        return Optional.empty();
     }
+    return reservationDTO;
+}
 
-    @Override
-    public Optional<ReservationDTO> findByEndDate(LocalDate endDate) {
-        Optional<ReservationDTO> reservationDTO = reservationRepository.findByEndDate(endDate).map(ReservationMapper::mapFromDto);
-        if(reservationDTO.isEmpty()){
-            return Optional.empty();
-        }
-        return reservationDTO;
+/**
+ * Busca una reserva por la fecha de finalización y la convierte a un DTO.
+ * Si no se encuentra la reserva, devuelve un Optional vacío.
+ */
+@Override
+public Optional<ReservationDTO> findByEndDate(LocalDate endDate) {
+    Optional<ReservationDTO> reservationDTO = reservationRepository.findByEndDate(endDate).map(ReservationMapper::mapFromDto);
+    if(reservationDTO.isEmpty()){
+        return Optional.empty();
     }
+    return reservationDTO;
+}
 }
 
 

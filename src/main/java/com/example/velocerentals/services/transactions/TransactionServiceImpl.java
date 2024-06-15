@@ -42,7 +42,7 @@ public void removeTransaction(Long id) {
 }
 
 /**
- * Añade una nueva transacción a la base de datos.
+ * Añade o actualiza una transacción
  */
 @Override
 public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {

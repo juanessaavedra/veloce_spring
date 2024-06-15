@@ -3,9 +3,7 @@ package com.example.velocerentals.services.vehicles;
 import com.example.velocerentals.domain.entities.Vehicle;
 import com.example.velocerentals.domain.enums.VehicleAvailable;
 import com.example.velocerentals.domain.enums.VehicleCategory;
-import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
-import com.example.velocerentals.mapping.mappers.UserMapper;
 import com.example.velocerentals.mapping.mappers.VehicleMapper;
 import com.example.velocerentals.repositories.vehicles.VehicleRepository;
 import org.apache.coyote.BadRequestException;
@@ -49,41 +47,50 @@ public void removeVehicle(Long id) {
 }
 
 /**
- * Añade un nuevo vehículo a la base de datos.
+ * Añade o actualiza vehículo a la base de datos.
  */
 @Override
 public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
     return VehicleMapper.mapFromDto(vehicleRepository.save(VehicleMapper.mapFromModel(vehicleDTO)));
 }
 
-    @Override
-    public Optional<VehicleDTO> findByPrice(double price) {
-        Optional<VehicleDTO> userDTO = vehicleRepository.findByPrice(price).map(VehicleMapper::mapFromDto);
-        if(userDTO.isEmpty()){
-            return Optional.empty();
-        }
-        return userDTO;
+    /**
+ * Busca un vehículo por su precio.
+ */
+@Override
+public Optional<VehicleDTO> findByPrice(double price) {
+    Optional<VehicleDTO> userDTO = vehicleRepository.findByPrice(price).map(VehicleMapper::mapFromDto);
+    if(userDTO.isEmpty()){
+        return Optional.empty();
     }
+    return userDTO;
+}
 
-    @Override
-    public List<VehicleDTO> listByCategory(VehicleCategory category) {
-            List<VehicleDTO> vehicles = new ArrayList<>();
-            for(Vehicle vehicle : vehicleRepository.findAll()){
-                if(vehicle.getCategory().equals(category)){
-                    vehicles.add(VehicleMapper.mapFromDto(vehicle));
-                }
-            }
-            return vehicles;
-    }
-
-    @Override
-    public List<VehicleDTO> listByAvailability(VehicleAvailable available) {
-        List<VehicleDTO> vehicles = new ArrayList<>();
-        for(Vehicle vehicle : vehicleRepository.findAll()){
-            if(vehicle.getAvailable().equals(available)){
-                vehicles.add(VehicleMapper.mapFromDto(vehicle));
-            }
+/**
+ * Lista todos los vehículos por categoría.
+ */
+@Override
+public List<VehicleDTO> listByCategory(VehicleCategory category) {
+    List<VehicleDTO> vehicles = new ArrayList<>();
+    for(Vehicle vehicle : vehicleRepository.findAll()){
+        if(vehicle.getCategory().equals(category)){
+            vehicles.add(VehicleMapper.mapFromDto(vehicle));
         }
-        return vehicles;
+    }
+    return vehicles;
+}
+
+/**
+ * Lista todos los vehículos por disponibilidad.
+ */
+@Override
+public List<VehicleDTO> listByAvailability(VehicleAvailable available) {
+    List<VehicleDTO> vehicles = new ArrayList<>();
+    for(Vehicle vehicle : vehicleRepository.findAll()){
+        if(vehicle.getAvailable().equals(available)){
+            vehicles.add(VehicleMapper.mapFromDto(vehicle));
+        }
+    }
+    return vehicles;
 }
     }

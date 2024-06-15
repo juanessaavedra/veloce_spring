@@ -44,13 +44,12 @@ public void removeUser(Long id) {
 }
 
 /**
- * Añade un nuevo usuario.
+ * Añade o actualiza un usuario.
  */
 @Override
 public UserDTO saveUser(UserDTO userDTO) {
     return UserMapper.mapFromDto(userRepository.save(UserMapper.mapFromModel(userDTO)));
 }
-
 
 
     /**
@@ -65,13 +64,16 @@ public Optional<UserDTO> byEmailUser(String email)  {
     return userDTO;
 }
 
-    @Override
-    public Optional<UserDTO> byPassword(String password) throws BadRequestException {
-        Optional<UserDTO> userDTO = userRepository.findByPassword(password).map(UserMapper::mapFromDto);
-        if(userDTO.isEmpty()){
-            return Optional.empty();
-        }
-        return userDTO;
+   /**
+ * Busca un usuario por su contraseña.
+ */
+@Override
+public Optional<UserDTO> byPassword(String password) throws BadRequestException {
+    Optional<UserDTO> userDTO = userRepository.findByPassword(password).map(UserMapper::mapFromDto);
+    if(userDTO.isEmpty()){
+        return Optional.empty();
     }
+    return userDTO;
+}
 
 }

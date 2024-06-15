@@ -3,7 +3,6 @@ package com.example.velocerentals.controllers;
 
 import com.example.velocerentals.domain.enums.VehicleAvailable;
 import com.example.velocerentals.domain.enums.VehicleCategory;
-import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
 import com.example.velocerentals.services.vehicles.VehicleService;
 import jakarta.validation.Valid;
@@ -22,22 +21,22 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    /** Obtiene una lista de todos los vehículos.**/
+
     @GetMapping(value = "/get-vehicles")
     public List<VehicleDTO> getVehicles() {return vehicleService.listVehicles();}
 
-    /** Obtiene un vehículo por su identificador.**/
+
     @GetMapping(value = "/get-vehicles-id/{id}")
     public VehicleDTO byIdVehicle(@PathVariable Long id) throws BadRequestException {return vehicleService.byIdVehicle(id);}
 
     @GetMapping(value = "/get-vehicles-price/{price}")
     public Optional<VehicleDTO> byPrice(@PathVariable double price) {return vehicleService.findByPrice(price);}
 
-    /** Elimina un vehículo por su identificador.**/
+
     @DeleteMapping(value = "/delete-vehicles-id/{id}")
     public void removeVehicle(@PathVariable Long id) {vehicleService.removeVehicle(id);}
 
-    /** Añade un nuevo vehículo.**/
+
     @PostMapping(value = "/add-vehicle")
     public void addVehicle(@RequestBody @Valid VehicleDTO vehicleDTO) {vehicleService.saveVehicle(vehicleDTO);}
 

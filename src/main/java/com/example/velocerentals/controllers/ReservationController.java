@@ -21,33 +21,25 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-    /**
-     * Recupera una lista de todas las reservas.
-     */
+
     @GetMapping(value = "/get-reservations")
     public List<ReservationDTO> getReservations() {
         return reservationService.listReservations();
     }
 
-    /**
-     * Recupera una reserva por su ID.
-     */
+
     @GetMapping(value = "/get-reservations-id/{id}")
     public ReservationDTO byIdReservation(@PathVariable Long id) throws BadRequestException {
         return reservationService.byIdReservation(id);
     }
 
-    /**
-     * Recupera una reserva por su ID de vehículo.
-     */
+
     @GetMapping(value = "/get-reservations-idvehicle/{idVehicle}")
     public Optional<ReservationDTO> byIdVehicle(@PathVariable Long idVehicle) throws BadRequestException {
         return reservationService.findByVehicleId(idVehicle);
     }
 
-    /**
-     * Recupera una reserva por su ID de usuario.
-     */
+
     @GetMapping(value = "/get-reservations-iduser/{idUser}")
     public Optional<ReservationDTO> byIdUser(@PathVariable Long idUser) throws BadRequestException {
         return reservationService.findByUserId(idUser);
@@ -64,17 +56,13 @@ public class ReservationController {
         return reservationService.findByEndDate(endDate);
     }
 
-    /**
-     * Elimina una reserva por su ID.
-     */
+
     @DeleteMapping(value = "/delete-reservation/{id}")
     public void removeReservation(@PathVariable Long id) {
         reservationService.removeReservation(id);
     }
 
-    /**
-     * Crea una nueva reserva.
-     */
+
     @PostMapping(value = "/create-reservation")
     public void createReservation(@RequestBody @Valid ReservationDTO reservationDTO) {
         reservationService.saveReservation(reservationDTO);

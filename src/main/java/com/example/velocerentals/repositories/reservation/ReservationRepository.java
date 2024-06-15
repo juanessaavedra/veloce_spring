@@ -1,7 +1,6 @@
 package com.example.velocerentals.repositories.reservation;
 
 import com.example.velocerentals.domain.entities.Reservation;
-import com.example.velocerentals.mapping.dtos.ReservationDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;

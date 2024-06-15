@@ -17,12 +17,7 @@ public enum PayMethods {
         this.value = value;
     }
 
-    /**
- * Este método se utiliza para recuperar un enumerado PayMethods basado en el valor proporcionado.
- * @param value El valor para coincidir con el valor del enumerado.
- * @return El enumerado PayMethods que coincide con el valor proporcionado.
- * @throws IllegalArgumentException Si no hay ningún enumerado que coincida con el valor proporcionado.
- */
+
 public static PayMethods getPayMethods(String value) {
     return Arrays.stream(PayMethods.values())
           .filter(e -> Objects.equals(e.value, value))

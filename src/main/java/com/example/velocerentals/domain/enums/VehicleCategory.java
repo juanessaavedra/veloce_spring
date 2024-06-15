@@ -17,12 +17,7 @@ public enum VehicleCategory {
         this.value = value;
     }
 
-    /**
- * Este método se utiliza para recuperar una
- * instancia de {@link VehicleCategory} basada en el valor de entrada.
- * Si no se encuentra ninguna categoría de vehículo con el valor proporcionado,
- * se lanzará una excepción.
- */
+
 public static VehicleCategory getVehicleCategory(String value) {
     return Arrays.stream(VehicleCategory.values())
            .filter(e -> Objects.equals(e.value, value))

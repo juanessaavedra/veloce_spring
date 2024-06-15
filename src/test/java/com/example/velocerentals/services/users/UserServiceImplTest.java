@@ -41,7 +41,7 @@ class UserServiceImplTest {
 
     }
     @Test
-    void addUser() throws BadRequestException {
+    void saveUser() throws BadRequestException {
         User expected = User.builder()
                 .id(1L)
                 .name("Juanes")
@@ -52,7 +52,7 @@ class UserServiceImplTest {
 
         Mockito.when(repository.save(Mockito.any())).thenReturn(expected);
 
-        UserDTO result = service.addUser(UserDTO.builder()
+        UserDTO result = service.saveUser(UserDTO.builder()
                 .name("Juanes")
                 .age(22)
                 .email("juanessaavedra@gmail.com")
@@ -90,6 +90,23 @@ class UserServiceImplTest {
             Optional<UserDTO> result2 = service.byEmailUser("juanessaavedra@gmail.com");
             assertEquals(expected2.getEmail(), result2.get().email());
         }
+
+    @Test
+    void byPasswordUser() throws BadRequestException {
+        User expected3 = User.builder()
+                .id(1L)
+                .name("Juanes")
+                .age(22)
+                .email("juanessaavedra@gmail.com")
+                .cellphone("310")
+                .password("123")
+                .build();
+
+        Mockito.when(repository.findByPassword("123")).thenReturn(Optional.of(expected3));
+        Optional<UserDTO> result3 = service.byPassword("123");
+        assertEquals(expected3.getPassword(), result3.get().password());
+    }
+
 
        @Test
     void removeUser() {
