@@ -8,6 +8,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,17 @@ public class ReservationController {
     @GetMapping(value = "/get-reservations-iduser/{idUser}")
     public Optional<ReservationDTO> byIdUser(@PathVariable Long idUser) throws BadRequestException {
         return reservationService.findByUserId(idUser);
+    }
+
+
+    @GetMapping(value = "/get-reservations-startDate/{startDate}")
+    public Optional<ReservationDTO> byStartDate(@PathVariable LocalDate startDate) throws BadRequestException {
+        return reservationService.findByStartDate(startDate);
+    }
+
+    @GetMapping(value = "/get-reservations-endDate/{endDate}")
+    public Optional<ReservationDTO> byEndDate(@PathVariable LocalDate endDate) throws BadRequestException {
+        return reservationService.findByEndDate(endDate);
     }
 
     /**

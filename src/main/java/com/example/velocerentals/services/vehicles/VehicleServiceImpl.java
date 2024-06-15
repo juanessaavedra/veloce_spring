@@ -1,13 +1,15 @@
 package com.example.velocerentals.services.vehicles;
 
+import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
+import com.example.velocerentals.mapping.mappers.UserMapper;
 import com.example.velocerentals.mapping.mappers.VehicleMapper;
 import com.example.velocerentals.repositories.vehicles.VehicleRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
@@ -48,4 +50,13 @@ public void removeVehicle(Long id) {
 public VehicleDTO addVehicle(VehicleDTO vehicleDTO) {
     return VehicleMapper.mapFromDto(vehicleRepository.save(VehicleMapper.mapFromModel(vehicleDTO)));
 }
+
+    @Override
+    public Optional<VehicleDTO> findByPrice(double price) {
+        Optional<VehicleDTO> userDTO = vehicleRepository.findByPrice(price).map(VehicleMapper::mapFromDto);
+        if(userDTO.isEmpty()){
+            return Optional.empty();
+        }
+        return userDTO;
+    }
 }

@@ -34,6 +34,9 @@ public class UserController {
     @GetMapping(value = "/get-users-email/{email}")
     public Optional<UserDTO> byEmailUser(@PathVariable String email) throws BadRequestException {return userService.byEmailUser(email);}
 
+    @GetMapping(value = "/get-users-password/{password}")
+    public Optional<UserDTO> byPassword(@PathVariable String password) throws BadRequestException {return userService.byPassword(password);}
+
     /**
      * Elimina un usuario por su identificador.
      */

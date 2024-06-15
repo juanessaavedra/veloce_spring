@@ -20,5 +20,7 @@ public interface UserService {
 
     Optional<UserDTO> byEmailUser(String email) throws BadRequestException;
 
+    Optional<UserDTO> byPassword(String password) throws BadRequestException;
+
 
 }

@@ -18,5 +18,10 @@ public record UserDTO(Long id,
                       String email,
 
                       @Size(max = 10)
-                      String cellphone) {
+                      String cellphone,
+
+                      @NotNull(message = "Password must not be null")
+                              @NotEmpty(message = "Password must not be empty")
+                              @NotBlank(message = "Password must not be blank")
+                      String password) {
 }

@@ -8,6 +8,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +77,25 @@ public Optional<ReservationDTO> findByVehicleId(Long idVehicle) {
     }
     return reservationDTO;
 }
+
+    @Override
+    public Optional<ReservationDTO> findByStartDate(LocalDate startDate) {
+        Optional<ReservationDTO> reservationDTO = reservationRepository.findByStartDate(startDate).map(ReservationMapper::mapFromDto);
+        if(reservationDTO.isEmpty()){
+            return Optional.empty();
+        }
+        return reservationDTO;
     }
+
+    @Override
+    public Optional<ReservationDTO> findByEndDate(LocalDate endDate) {
+        Optional<ReservationDTO> reservationDTO = reservationRepository.findByEndDate(endDate).map(ReservationMapper::mapFromDto);
+        if(reservationDTO.isEmpty()){
+            return Optional.empty();
+        }
+        return reservationDTO;
+    }
+}
 
 
 

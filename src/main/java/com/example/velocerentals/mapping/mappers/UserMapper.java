@@ -13,6 +13,7 @@ public class UserMapper {
                 .age(userProfileDTO.age())
                 .email(userProfileDTO.email())
                 .cellphone(userProfileDTO.cellphone())
+                .password(userProfileDTO.password())
                 .build();
 
     }
@@ -24,6 +25,7 @@ public class UserMapper {
                 .age(user.getAge())
                 .email(user.getEmail())
                 .cellphone(user.getCellphone())
+                .password(user.getPassword())
                 .build();
     }
 }

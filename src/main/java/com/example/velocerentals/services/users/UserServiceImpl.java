@@ -63,4 +63,13 @@ public Optional<UserDTO> byEmailUser(String email)  {
     return userDTO;
 }
 
+    @Override
+    public Optional<UserDTO> byPassword(String password) throws BadRequestException {
+        Optional<UserDTO> userDTO = userRepository.findByPassword(password).map(UserMapper::mapFromDto);
+        if(userDTO.isEmpty()){
+            return Optional.empty();
+        }
+        return userDTO;
+    }
+
 }
