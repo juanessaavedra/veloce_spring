@@ -2,6 +2,8 @@ package com.example.velocerentals.services.vehicles;
 
 
 import com.example.velocerentals.domain.entities.Vehicle;
+import com.example.velocerentals.domain.enums.VehicleAvailable;
+import com.example.velocerentals.domain.enums.VehicleCategory;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
 import org.apache.coyote.BadRequestException;
 
@@ -19,4 +21,12 @@ public interface VehicleService {
     VehicleDTO saveVehicle(VehicleDTO vehicleDTO);
 
     Optional<VehicleDTO> findByPrice(double price);
+
+    List<VehicleDTO> listByCategory(VehicleCategory category);
+
+    List<VehicleDTO> listByAvailability(VehicleAvailable available);
+
+
+
+
 }

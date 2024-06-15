@@ -1,6 +1,8 @@
 package com.example.velocerentals.controllers;
 
 
+import com.example.velocerentals.domain.enums.VehicleAvailable;
+import com.example.velocerentals.domain.enums.VehicleCategory;
 import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
 import com.example.velocerentals.services.vehicles.VehicleService;
@@ -38,5 +40,15 @@ public class VehicleController {
     /** Añade un nuevo vehículo.**/
     @PostMapping(value = "/add-vehicle")
     public void addVehicle(@RequestBody @Valid VehicleDTO vehicleDTO) {vehicleService.saveVehicle(vehicleDTO);}
+
+    @GetMapping("/get-vehicles-category/{category}")
+    public List<VehicleDTO> getVehiclesByCategory(@PathVariable VehicleCategory category) {
+        return vehicleService.listByCategory(category);
+    }
+
+    @GetMapping("/get-vehicles-available/{available}")
+    public List<VehicleDTO> getVehiclesByAvailable(@PathVariable VehicleAvailable available) {
+        return vehicleService.listByAvailability(available);
+    }
 
 }

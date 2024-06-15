@@ -1,5 +1,8 @@
 package com.example.velocerentals.services.vehicles;
 
+import com.example.velocerentals.domain.entities.Vehicle;
+import com.example.velocerentals.domain.enums.VehicleAvailable;
+import com.example.velocerentals.domain.enums.VehicleCategory;
 import com.example.velocerentals.mapping.dtos.UserDTO;
 import com.example.velocerentals.mapping.dtos.VehicleDTO;
 import com.example.velocerentals.mapping.mappers.UserMapper;
@@ -8,6 +11,8 @@ import com.example.velocerentals.repositories.vehicles.VehicleRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,4 +64,26 @@ public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
         }
         return userDTO;
     }
+
+    @Override
+    public List<VehicleDTO> listByCategory(VehicleCategory category) {
+            List<VehicleDTO> vehicles = new ArrayList<>();
+            for(Vehicle vehicle : vehicleRepository.findAll()){
+                if(vehicle.getCategory().equals(category)){
+                    vehicles.add(VehicleMapper.mapFromDto(vehicle));
+                }
+            }
+            return vehicles;
+    }
+
+    @Override
+    public List<VehicleDTO> listByAvailability(VehicleAvailable available) {
+        List<VehicleDTO> vehicles = new ArrayList<>();
+        for(Vehicle vehicle : vehicleRepository.findAll()){
+            if(vehicle.getAvailable().equals(available)){
+                vehicles.add(VehicleMapper.mapFromDto(vehicle));
+            }
+        }
+        return vehicles;
 }
+    }
