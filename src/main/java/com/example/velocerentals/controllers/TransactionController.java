@@ -58,6 +58,6 @@ public class TransactionController {
      */
     @PostMapping(value = "/create-transaction")
     public void createTransaction(@RequestBody @Valid TransactionDTO transactionDTO) {
-        transactionService.addTransaction(transactionDTO);
+        transactionService.saveTransaction(transactionDTO);
     }
 }

@@ -37,6 +37,6 @@ public class VehicleController {
 
     /** Añade un nuevo vehículo.**/
     @PostMapping(value = "/add-vehicle")
-    public void addVehicle(@RequestBody @Valid VehicleDTO vehicleDTO) {vehicleService.addVehicle(vehicleDTO);}
+    public void addVehicle(@RequestBody @Valid VehicleDTO vehicleDTO) {vehicleService.saveVehicle(vehicleDTO);}
 
 }

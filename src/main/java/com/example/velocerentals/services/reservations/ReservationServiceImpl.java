@@ -48,7 +48,7 @@ public void removeReservation(Long id) {
  * Añade una nueva reserva a la base de datos y la convierte a un DTO.
  */
 @Override
-public ReservationDTO addReservation(ReservationDTO reservationDTO) {
+public ReservationDTO saveReservation(ReservationDTO reservationDTO) {
     return ReservationMapper.mapFromDto(reservationRepository.save(ReservationMapper.mapFromModel(reservationDTO)));
 }
 

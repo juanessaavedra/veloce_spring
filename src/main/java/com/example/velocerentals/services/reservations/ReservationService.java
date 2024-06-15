@@ -16,7 +16,7 @@ public interface ReservationService {
 
     void removeReservation(Long id);
 
-    ReservationDTO addReservation(ReservationDTO reservationDTO);
+    ReservationDTO saveReservation(ReservationDTO reservationDTO);
 
     Optional<ReservationDTO> findByUserId(Long idUser);
 

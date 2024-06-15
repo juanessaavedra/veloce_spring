@@ -16,7 +16,7 @@ public interface VehicleService {
 
     void removeVehicle(Long id);
 
-    VehicleDTO addVehicle(VehicleDTO vehicleDTO);
+    VehicleDTO saveVehicle(VehicleDTO vehicleDTO);
 
     Optional<VehicleDTO> findByPrice(double price);
 }

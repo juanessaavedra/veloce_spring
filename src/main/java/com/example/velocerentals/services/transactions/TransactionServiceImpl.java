@@ -45,7 +45,7 @@ public void removeTransaction(Long id) {
  * Añade una nueva transacción a la base de datos.
  */
 @Override
-public TransactionDTO addTransaction(TransactionDTO transactionDTO) {
+public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
     return TransactionMapper.mapFromDto(transactionRepository.save(TransactionMapper.mapFromModel(transactionDTO)));
 }
 

@@ -47,11 +47,13 @@ public void removeUser(Long id) {
  * Añade un nuevo usuario.
  */
 @Override
-public UserDTO addUser(UserDTO userDTO) {
+public UserDTO saveUser(UserDTO userDTO) {
     return UserMapper.mapFromDto(userRepository.save(UserMapper.mapFromModel(userDTO)));
 }
 
-/**
+
+
+    /**
  * Busca un usuario por su correo electrónico.
  */
 @Override

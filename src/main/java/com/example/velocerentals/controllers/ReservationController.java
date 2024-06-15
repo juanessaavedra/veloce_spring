@@ -77,7 +77,7 @@ public class ReservationController {
      */
     @PostMapping(value = "/create-reservation")
     public void createReservation(@RequestBody @Valid ReservationDTO reservationDTO) {
-        reservationService.addReservation(reservationDTO);
+        reservationService.saveReservation(reservationDTO);
     }
 
 }

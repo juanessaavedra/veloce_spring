@@ -47,6 +47,6 @@ public class UserController {
      * Agrega un nuevo usuario.
      */
     @PostMapping(value = "/create-user")
-    public void addUser(@RequestBody @Valid UserDTO userDTO) {userService.addUser(userDTO);}
+    public void addUser(@RequestBody @Valid UserDTO userDTO) {userService.saveUser(userDTO);}
 }
 

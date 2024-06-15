@@ -16,11 +16,14 @@ public interface UserService {
 
     void removeUser(Long id);
 
-    UserDTO addUser(UserDTO userDTO);
+    UserDTO saveUser(UserDTO userDTO);
+
+
 
     Optional<UserDTO> byEmailUser(String email) throws BadRequestException;
 
     Optional<UserDTO> byPassword(String password) throws BadRequestException;
+
 
 
 }

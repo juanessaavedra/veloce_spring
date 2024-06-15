@@ -47,7 +47,7 @@ public void removeVehicle(Long id) {
  * Añade un nuevo vehículo a la base de datos.
  */
 @Override
-public VehicleDTO addVehicle(VehicleDTO vehicleDTO) {
+public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
     return VehicleMapper.mapFromDto(vehicleRepository.save(VehicleMapper.mapFromModel(vehicleDTO)));
 }
 

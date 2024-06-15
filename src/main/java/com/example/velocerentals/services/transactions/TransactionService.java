@@ -16,7 +16,7 @@ public interface TransactionService {
 
     void removeTransaction(Long id);
 
-    TransactionDTO addTransaction(TransactionDTO transactionDTODTO);
+    TransactionDTO saveTransaction(TransactionDTO transactionDTODTO);
 
     Optional<TransactionDTO> findByReservationId(Long idReservation);
 
